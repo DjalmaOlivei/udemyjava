@@ -3,14 +3,14 @@ package boardgame;
 public class Board {
 
     private int rows;
-    private int colums;
+    private int columns;
     private Piece[][] pieces;
 
-    public Board(int rows, int colums) {
-        if (rows < 1 || colums < 1) throw new BoardException("colums and rows cant be 0 or less!");
+    public Board(int rows, int columns) {
+        if (rows < 1 || columns < 1) throw new BoardException("columns and rows cant be 0 or less!");
         this.rows = rows;
-        this.colums = colums;
-        pieces = new Piece[rows][colums];
+        this.columns = columns;
+        pieces = new Piece[rows][columns];
     }
 
     public int getRows() {
@@ -22,16 +22,16 @@ public class Board {
     }
 
     public int getColums() {
-        return colums;
+        return columns;
     }
 
-    public void setColums(int colums) {
-        this.colums = colums;
+    public void setColums(int columns) {
+        this.columns = columns;
     }
 
-    public Piece piece(int row, int colum) {
-        if(!positionExists(row, colum)) throw new BoardException("Position does not exist!");
-        return pieces[row][colum];
+    public Piece piece(int row, int column) {
+        if(!positionExists(row, column)) throw new BoardException("Position does not exist!");
+        return pieces[row][column];
     }
 
     public Piece piece(Position position) {
@@ -50,7 +50,7 @@ public class Board {
     }
 
     public boolean positionExists(int row, int cloum){
-        return (row>=0 && row < rows) && (cloum >=0 && cloum < colums);
+        return (row>=0 && row < rows) && (cloum >=0 && cloum < columns);
     }
 
     public boolean thereIsAPiece(Position position){

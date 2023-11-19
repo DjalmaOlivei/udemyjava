@@ -14,7 +14,7 @@ public class UI {
             System.out.println();
         }
         System.out.print("  ");
-        for(int i = 97; i<pieces[0].length+97; i++){
+        for(int i = (int)'a'; i<pieces[0].length+97; i++){
             System.out.print((char) i + " ");
         }
         /*for(ChessPiece[] i: pieces){
