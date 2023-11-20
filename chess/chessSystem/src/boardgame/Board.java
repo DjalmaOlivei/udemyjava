@@ -21,7 +21,7 @@ public class Board {
         this.rows = rows;
     }
 
-    public int getColums() {
+    public int getColumns() {
         return columns;
     }
 
@@ -36,17 +36,17 @@ public class Board {
 
     public Piece piece(Position position) {
         if(!positionExists(position)) throw new BoardException("Position does not exist!");
-        return pieces[position.getRow()][position.getColum()];
+        return pieces[position.getRow()][position.getColumn()];
     }
 
     public void placePiece(Piece piece, Position position){
         if(thereIsAPiece(position)) throw new BoardException("There is already a piece on position "+ position +"!");
-        pieces[position.getRow()][position.getColum()] = piece;
+        pieces[position.getRow()][position.getColumn()] = piece;
         piece.position = position;
     }
 
     public boolean positionExists(Position position){
-        return positionExists(position.getRow(), position.getColum());
+        return positionExists(position.getRow(), position.getColumn());
     }
 
     public boolean positionExists(int row, int cloum){
@@ -63,7 +63,7 @@ public class Board {
         if(piece(position)==null) return null;
         Piece aux = piece(position);
         aux.position = null;
-        pieces[position.getRow()][position.getColum()]=null;
+        pieces[position.getRow()][position.getColumn()]=null;
         return aux;
     }
 
