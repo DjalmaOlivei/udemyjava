@@ -33,7 +33,7 @@ public class UI {
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
     public static void clearScreen() {
-         System.out.print("\033[H\033[2J");
+        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
@@ -63,13 +63,19 @@ public class UI {
 
     }
 
-    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured){
+    public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
         printBoard(chessMatch.getPieces());
         System.out.println("\n");
         printCapturedPieces(captured);
         System.out.println("Turn : " + chessMatch.getTurn());
-        System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
-        if (chessMatch.getCheck()) System.out.println("CHECK!");
+        if (!chessMatch.getCheckMate()) {
+            System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+            if (chessMatch.getCheck()) System.out.println("CHECK!");
+        }
+        else{
+            System.out.println("CHECKMATE!");
+            System.out.println("Winner: "+ chessMatch.getCurrentPlayer());
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
@@ -88,7 +94,8 @@ public class UI {
     }
 
     private static void printPiece(ChessPiece piece, boolean backGround) {
-        if (backGround) System.out.print(ANSI_BLUE_BACKGROUND);
+        if (backGround)
+            System.out.print(ANSI_BLUE_BACKGROUND);
         if (piece == null) {
             System.out.print("-" + ANSI_RESET);
         } else {
@@ -101,12 +108,12 @@ public class UI {
         System.out.print(" ");
     }
 
-    private static void printCapturedPieces(List<ChessPiece> captured){
+    private static void printCapturedPieces(List<ChessPiece> captured) {
         List<ChessPiece> white = captured.stream()
-        .filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
+                .filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
         List<ChessPiece> black = captured.stream()
-        .filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
-        System.out.println("Captured Pieces"); 
+                .filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+        System.out.println("Captured Pieces");
         System.out.print(ANSI_WHITE);
         System.out.print("white: ");
         System.out.print(Arrays.toString(white.toArray()));
