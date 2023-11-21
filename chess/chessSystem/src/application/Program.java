@@ -38,7 +38,7 @@ public class Program {
 				ChessPiece capturChessPiece = chessMatch.performChessMove(source, target);
 				if (capturChessPiece != null) captured.add(capturChessPiece);
 
-			} catch (ChessException e) {
+			 } catch (ChessException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			} catch (InputMismatchException e) {
