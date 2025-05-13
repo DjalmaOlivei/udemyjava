@@ -1,2 +1,4 @@
 # udemyjava
-JavaUdemyCourse
+UdemyJavaCourse
+
+*Simple Chess game runing on terminal*
